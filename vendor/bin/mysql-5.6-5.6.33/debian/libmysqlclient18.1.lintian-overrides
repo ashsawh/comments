@@ -1,0 +1,7 @@
+# I take this issue seriously but as per bug #590905
+# it will need playing with in experimental. - periapt
+libmysqlclient18.1: no-symbols-control-file usr/lib/i386-linux-gnu/libmysqlclient.so.18.1.0
+# Now that MySQL 5.6 client library package is name 18.1
+# so will have no other option but to overlook both errors
+libmysqlclient18.1: package-name-doesnt-match-sonames libmysqlclient18
+libmysqlclient18.1: ldconfig-symlink-referencing-wrong-file usr/lib/x86_64-linux-gnu/libmysqlclient.so.18 -> libmysqlclient.so.18.1 instead of libmysqlclient.so.18.1.0

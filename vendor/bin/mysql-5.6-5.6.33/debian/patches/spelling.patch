@@ -1,0 +1,285 @@
+Author <nicholas@periapt.co.uk>
+Subject: spelling errors
+ Preceeding -> preceding
+Last-Update: 2012-05-19
+Forwarded: no
+Index: mysql-5.6.33/libevent/event.3
+===================================================================
+--- mysql-5.6.33.orig/libevent/event.3	2016-09-19 08:37:08.847153022 -0400
++++ mysql-5.6.33/libevent/event.3	2016-09-19 08:37:08.835152879 -0400
+@@ -253,7 +253,7 @@
+ or
+ .Va EV_WRITE .
+ Additionally, an event which has registered interest in more than one of the
+-preceeding events, via bitwise-OR to
++preceding events, via bitwise-OR to
+ .Fn event_set ,
+ can provide its callback function with a bitwise-OR of more than one triggered
+ event.
+Index: mysql-5.6.33/mysql-test/extra/rpl_tests/rpl_ddl.test
+===================================================================
+--- mysql-5.6.33.orig/mysql-test/extra/rpl_tests/rpl_ddl.test	2016-09-19 08:37:08.847153022 -0400
++++ mysql-5.6.33/mysql-test/extra/rpl_tests/rpl_ddl.test	2016-09-19 08:37:08.835152879 -0400
+@@ -98,8 +98,8 @@
+ #       --> less switching of AUTOCOMMIT mode on master side.
+ #
+ #    4. Never use a test object, which was direct or indirect affected by a
+-#       preceeding test sequence again.
+-#       If one preceeding test sequence hits a (sometimes not visible,
++#       preceding test sequence again.
++#       If one preceding test sequence hits a (sometimes not visible,
+ #       because the sql error code of the statement might be 0) bug
+ #       and these rules are ignored, a following test sequence might earn ugly
+ #       effects like failing 'sync_slave_with_master', crashes of the slave or
+Index: mysql-5.6.33/mysql-test/extra/rpl_tests/rpl_row_basic.test
+===================================================================
+--- mysql-5.6.33.orig/mysql-test/extra/rpl_tests/rpl_row_basic.test	2016-09-19 08:37:08.847153022 -0400
++++ mysql-5.6.33/mysql-test/extra/rpl_tests/rpl_row_basic.test	2016-09-19 08:37:08.835152879 -0400
+@@ -221,7 +221,7 @@
+ SELECT * FROM t7 ORDER BY C1;
+ 
+ # since bug#31552/31609 idempotency is not default any longer. In order
+-# the preceeding test INSERT INTO t7 to pass the mode is switched
++# the preceding test INSERT INTO t7 to pass the mode is switched
+ # temprorarily
+ set @@global.slave_exec_mode= 'IDEMPOTENT';
+ 
+@@ -260,7 +260,7 @@
+ SELECT * FROM t8 ORDER BY a;
+ 
+ # since bug#31552/31609 idempotency is not default any longer. In order
+-# the preceeding test INSERT INTO t8 to pass the mode is switched
++# the preceding test INSERT INTO t8 to pass the mode is switched
+ # temprorarily
+ set @@global.slave_exec_mode= 'IDEMPOTENT';
+ 
+Index: mysql-5.6.33/mysql-test/include/wait_until_count_sessions.inc
+===================================================================
+--- mysql-5.6.33.orig/mysql-test/include/wait_until_count_sessions.inc	2016-09-19 08:37:08.847153022 -0400
++++ mysql-5.6.33/mysql-test/include/wait_until_count_sessions.inc	2016-09-19 08:37:08.835152879 -0400
+@@ -10,7 +10,7 @@
+ #    1. We wait for $current_sessions <= $count_sessions because in the use case
+ #       with count_sessions.inc before and wait_until_count_sessions.inc after
+ #       the core of the test it could happen that the disconnects of sessions
+-#       belonging to the preceeding test are not finished.
++#       belonging to the preceding test are not finished.
+ #       sessions at test begin($count_sessions) =  m + n
+ #       sessions of the previous test which will be soon disconnected = n (n >= 0)
+ #       sessions at test end ($current sessions, assuming the test disconnects
+Index: mysql-5.6.33/mysql-test/suite/funcs_1/views/func_view.inc
+===================================================================
+--- mysql-5.6.33.orig/mysql-test/suite/funcs_1/views/func_view.inc	2016-09-19 08:37:08.847153022 -0400
++++ mysql-5.6.33/mysql-test/suite/funcs_1/views/func_view.inc	2016-09-19 08:37:08.835152879 -0400
+@@ -285,7 +285,7 @@
+ #               other interesting value
+ #     numbers   -> 0
+ #     strings, blobs, binaries -> not full length of used data type, "exotic"
+-#                                 characters and preceeding and trailing spaces
++#                                 characters and preceding and trailing spaces
+ #     FIXME enum, set ??
+ INSERT INTO t1_values SET
+        my_char_30 = ' ---äÖüß@µ*$-- ',
+Index: mysql-5.6.33/mysql-test/suite/funcs_1/views/views_master.inc
+===================================================================
+--- mysql-5.6.33.orig/mysql-test/suite/funcs_1/views/views_master.inc	2016-09-19 08:37:08.847153022 -0400
++++ mysql-5.6.33/mysql-test/suite/funcs_1/views/views_master.inc	2016-09-19 08:37:08.835152879 -0400
+@@ -545,7 +545,7 @@
+ #                   view names are accepted, at creation time, alteration time,
+ #                   and drop time.
+ ###############################################################################
+-# Note(mleich): non-qualified view name means a view name without preceeding
++# Note(mleich): non-qualified view name means a view name without preceding
+ #               database name
+ --disable_warnings
+ DROP VIEW  IF EXISTS v1 ;
+Index: mysql-5.6.33/mysql-test/suite/rpl/t/rpl_ddl.test
+===================================================================
+--- mysql-5.6.33.orig/mysql-test/suite/rpl/t/rpl_ddl.test	2016-09-19 08:37:08.847153022 -0400
++++ mysql-5.6.33/mysql-test/suite/rpl/t/rpl_ddl.test	2016-09-19 08:37:08.835152879 -0400
+@@ -13,10 +13,10 @@
+ #         sequences start.
+ #
+ #      2. Never use a test object, which was direct or indirect affected by a
+-#         preceeding test sequence again.
++#         preceding test sequence again.
+ #         Except table d1.t1 where ONLY DML is allowed.
+ #
+-#         If one preceeding test sequence hits a (sometimes not good visible,
++#         If one preceding test sequence hits a (sometimes not good visible,
+ #         because the sql error code of the statement might be 0) bug
+ #         and these rules are ignored, a following test sequence might earn ugly
+ #         effects like failing 'sync_slave_with_master', crashes of the slave or
+Index: mysql-5.6.33/mysql-test/suite/rpl/t/rpl_row_basic_11bugs.test
+===================================================================
+--- mysql-5.6.33.orig/mysql-test/suite/rpl/t/rpl_row_basic_11bugs.test	2016-09-19 08:37:08.847153022 -0400
++++ mysql-5.6.33/mysql-test/suite/rpl/t/rpl_row_basic_11bugs.test	2016-09-19 08:37:08.835152879 -0400
+@@ -239,7 +239,7 @@
+ UPDATE t1 SET a = 5, b = 'slave' WHERE a = 1;
+ SELECT * FROM t1 ORDER BY a;
+ # since bug#31552/31609 idempotency is not default any longer. In
+-# order for the preceeding test UPDATE t1 to pass, the mode is switched
++# order for the preceding test UPDATE t1 to pass, the mode is switched
+ # temprorarily
+ set @@global.slave_exec_mode= 'IDEMPOTENT';
+ --echo **** On Master ****
+Index: mysql-5.6.33/mysql-test/suite/rpl_ndb/t/rpl_ndb_ddl.test
+===================================================================
+--- mysql-5.6.33.orig/mysql-test/suite/rpl_ndb/t/rpl_ndb_ddl.test	2016-09-19 08:37:08.847153022 -0400
++++ mysql-5.6.33/mysql-test/suite/rpl_ndb/t/rpl_ndb_ddl.test	2016-09-19 08:37:08.835152879 -0400
+@@ -13,10 +13,10 @@
+ #         sequences start.
+ #
+ #      2. Never use a test object, which was direct or indirect affected by a
+-#         preceeding test sequence again.
++#         preceding test sequence again.
+ #         Except table d1.t1 where ONLY DML is allowed.
+ #
+-#         If one preceeding test sequence hits a (sometimes not good visible,
++#         If one preceding test sequence hits a (sometimes not good visible,
+ #         because the sql error code of the statement might be 0) bug
+ #         and these rules are ignored, a following test sequence might earn ugly
+ #         effects like failing 'sync_slave_with_master', crashes of the slave or
+Index: mysql-5.6.33/sql/abstract_query_plan.cc
+===================================================================
+--- mysql-5.6.33.orig/sql/abstract_query_plan.cc	2016-09-19 08:37:08.847153022 -0400
++++ mysql-5.6.33/sql/abstract_query_plan.cc	2016-09-19 08:37:08.835152879 -0400
+@@ -336,7 +336,7 @@
+       {
+         /*
+           use_quick == 2 means that the decision on which access method to use
+-          will be taken late (as rows from the preceeding operation arrive).
++          will be taken late (as rows from the preceding operation arrive).
+           This operation is therefor not pushable.
+         */
+         DBUG_PRINT("info",
+Index: mysql-5.6.33/sql/ha_ndbcluster_push.cc
+===================================================================
+--- mysql-5.6.33.orig/sql/ha_ndbcluster_push.cc	2016-09-19 08:37:08.847153022 -0400
++++ mysql-5.6.33/sql/ha_ndbcluster_push.cc	2016-09-19 08:37:08.835152879 -0400
+@@ -1271,7 +1271,7 @@
+         if (m_join_scope.contain(referred_table_no))
+         {
+           // Locate the parent operation for this 'join_items[]'.
+-          // May refer any of the preceeding parent tables
++          // May refer any of the preceding parent tables
+           const NdbQueryOperationDef* const parent_op= m_tables[referred_table_no].m_op;
+           DBUG_ASSERT(parent_op != NULL);
+ 
+Index: mysql-5.6.33/sql/log_event.cc
+===================================================================
+--- mysql-5.6.33.orig/sql/log_event.cc	2016-09-19 08:37:08.847153022 -0400
++++ mysql-5.6.33/sql/log_event.cc	2016-09-19 08:37:08.839152927 -0400
+@@ -4654,7 +4654,7 @@
+     if ((error= rows_event_stmt_cleanup(const_cast<Relay_log_info*>(rli), thd)))
+     {
+       const_cast<Relay_log_info*>(rli)->report(ERROR_LEVEL, error,
+-                  "Error in cleaning up after an event preceeding the commit; "
++                  "Error in cleaning up after an event preceding the commit; "
+                   "the group log file/position: %s %s",
+                   const_cast<Relay_log_info*>(rli)->get_group_master_log_name(),
+                   llstr(const_cast<Relay_log_info*>(rli)->get_group_master_log_pos(),
+Index: mysql-5.6.33/sql/rpl_utility.cc
+===================================================================
+--- mysql-5.6.33.orig/sql/rpl_utility.cc	2016-09-19 08:37:08.847153022 -0400
++++ mysql-5.6.33/sql/rpl_utility.cc	2016-09-19 08:37:08.839152927 -0400
+@@ -1644,7 +1644,7 @@
+ void Deferred_log_events::rewind()
+ {
+   /*
+-    Reset preceeding Query log event events which execution was
++    Reset preceding Query log event events which execution was
+     deferred because of slave side filtering.
+   */
+   if (!is_empty())
+Index: mysql-5.6.33/sql/sql_optimizer.cc
+===================================================================
+--- mysql-5.6.33.orig/sql/sql_optimizer.cc	2016-09-19 08:37:08.847153022 -0400
++++ mysql-5.6.33/sql/sql_optimizer.cc	2016-09-19 08:37:08.839152927 -0400
+@@ -973,7 +973,7 @@
+         }
+       }
+     }
+-    else if (order &&                      // ORDER BY wo/ preceeding GROUP BY
++    else if (order &&                      // ORDER BY wo/ preceding GROUP BY
+              (simple_order || skip_sort_order)) // which is possibly skippable
+     {
+       if (test_if_skip_sort_order(tab, order, m_select_limit, false, 
+Index: mysql-5.6.33/sql/sql_rewrite.cc
+===================================================================
+--- mysql-5.6.33.orig/sql/sql_rewrite.cc	2016-09-19 08:37:08.847153022 -0400
++++ mysql-5.6.33/sql/sql_rewrite.cc	2016-09-19 08:37:08.839152927 -0400
+@@ -40,7 +40,7 @@
+ 
+ 
+ /**
+-  Append a key/value pair to a string, with an optional preceeding comma.
++  Append a key/value pair to a string, with an optional preceding comma.
+   For numeric values.
+ 
+   @param           str                  The string to append to
+@@ -72,7 +72,7 @@
+ 
+ /**
+   Append a key/value pair to a string if the value is non-NULL,
+-  with an optional preceeding comma.
++  with an optional preceding comma.
+ 
+   @param           str                  The string to append to
+   @param           comma                Prepend a comma?
+Index: mysql-5.6.33/sql/sql_yacc.cc
+===================================================================
+--- mysql-5.6.33.orig/sql/sql_yacc.cc	2016-09-19 08:37:08.847153022 -0400
++++ mysql-5.6.33/sql/sql_yacc.cc	2016-09-19 08:37:08.843152974 -0400
+@@ -37176,7 +37176,7 @@
+             {
+               /*
+                 Not in trigger assigning value to new row,
+-                and option_type preceeding local variable is illegal.
++                and option_type preceding local variable is illegal.
+               */
+               my_parse_error(ER(ER_SYNTAX_ERROR));
+               MYSQL_YYABORT;
+Index: mysql-5.6.33/sql/sql_yacc.yy
+===================================================================
+--- mysql-5.6.33.orig/sql/sql_yacc.yy	2016-09-19 08:37:08.847153022 -0400
++++ mysql-5.6.33/sql/sql_yacc.yy	2016-09-19 08:37:08.847153022 -0400
+@@ -14596,7 +14596,7 @@
+         | SESSION_SYM '.' { $$=OPT_SESSION; }
+         ;
+ 
+-// Option values with preceeding option_type.
++// Option values with preceding option_type.
+ option_value_following_option_type:
+           internal_variable_name equal set_expr_or_default
+           {
+@@ -14613,7 +14613,7 @@
+             {
+               /*
+                 Not in trigger assigning value to new row,
+-                and option_type preceeding local variable is illegal.
++                and option_type preceding local variable is illegal.
+               */
+               my_parse_error(ER(ER_SYNTAX_ERROR));
+               MYSQL_YYABORT;
+@@ -14621,7 +14621,7 @@
+           }
+         ;
+ 
+-// Option values without preceeding option_type.
++// Option values without preceding option_type.
+ option_value_no_option_type:
+           internal_variable_name equal
+           {
+Index: mysql-5.6.33/storage/myisam/mi_rnext.c
+===================================================================
+--- mysql-5.6.33.orig/storage/myisam/mi_rnext.c	2016-09-19 08:37:08.847153022 -0400
++++ mysql-5.6.33/storage/myisam/mi_rnext.c	2016-09-19 08:37:08.847153022 -0400
+@@ -65,7 +65,7 @@
+       Normally SQL layer would never request "search next" if
+       "search first" failed. But HANDLER may do anything.
+ 
+-      As mi_rnext() without preceeding mi_rkey()/mi_rfirst()
++      As mi_rnext() without preceding mi_rkey()/mi_rfirst()
+       equals to mi_rfirst(), we must restore original state
+       as if failing mi_rfirst() was not called.
+     */

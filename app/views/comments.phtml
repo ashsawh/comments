@@ -1,0 +1,69 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link href="comments.min.css" rel="stylesheet" type="text/css">
+
+<div class="container">
+    <div class="post-comments">
+
+        <div id="flashMessage"></div>
+
+        <div id="product">Product
+            <div class="productName detail">Name: <?=$product->name ?></div>
+            <div class="productSKU detail">SKU: <?=$product->sku ?></div>
+            <div class="productDesc detail">Description: </div>
+            <div id="desc"><?=$product->description ?></div>
+        </div>
+
+        <form id="addComment" method="GET">
+            <div class="form-group">
+                <label for="comment">Your Comment</label>
+                <textarea name="comment" id="commentBody" class="form-control" rows="3"></textarea>
+            </div>
+            <button type="submit" id="commentSend" class="btn btn-default">Send</button>
+        </form>
+
+        <?php foreach ($comments as $comment): ?>
+
+        <div class="row">
+
+            <div class="media">
+                <!-- first comment -->
+
+                <div class="media-heading">
+                    <button class="btn btn-default btn-xs" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseExample"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button> <span class="label label-info"><?=$comment->username ?></span>
+                </div>
+
+
+                    <div class="media-body">
+                        <p><?=$comment->title ?></p>
+                        <div class="comment-meta">
+                            <span><a href="#">delete</a></span>
+                            <span><a href="#">report</a></span>
+                            <span><a href="#">hide</a></span>
+                            <span>
+                        <a class="" role="button" data-toggle="collapse" href="#replyCommentT" aria-expanded="false" aria-controls="collapseExample">reply</a>
+                      </span>
+                            <div class="collapse" id="replyCommentT">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="comment">Your Comment</label>
+                                        <textarea name="comment" class="form-control" rows="3"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-default">Send</button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- comment-meta -->
+                </div>
+
+            </div>
+            <!-- first comment -->
+        </div>
+        <?php endforeach; ?>
+    </div>
+    <!-- post-comments -->
+</div>
+
+<script language="javascript" type="text/javascript" src="comments.min.js"></script>

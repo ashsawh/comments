@@ -1,0 +1,53 @@
+Author: Robie Basak <robie.basak@canonical.com>
+Description: Work around gcc 4.9 arm64 optimisation bug
+Bug-Ubuntu: https://launchpad.net/bugs/1353729
+Last-Update: 2014-09-17
+
+--- a/storage/perfschema/pfs_account.h
++++ b/storage/perfschema/pfs_account.h
+@@ -100,7 +100,12 @@
+ PFS_account *
+ find_or_create_account(PFS_thread *thread,
+                          const char *username, uint username_length,
+-                         const char *hostname, uint hostname_length);
++                         const char *hostname, uint hostname_length)
++#if defined(__aarch64__)
++  /* Workaround for https://launchpad.net/bugs/1353729 */
++  __attribute__((optimize("O1")))
++#endif
++;
+ 
+ PFS_account *sanitize_account(PFS_account *unsafe);
+ void purge_all_account(void);
+--- a/storage/perfschema/pfs_host.h
++++ b/storage/perfschema/pfs_host.h
+@@ -92,7 +92,12 @@
+ void cleanup_host_hash(void);
+ 
+ PFS_host *find_or_create_host(PFS_thread *thread,
+-                              const char *hostname, uint hostname_length);
++                              const char *hostname, uint hostname_length)
++#if defined(__aarch64__)
++  /* Workaround for https://launchpad.net/bugs/1353729 */
++  __attribute__((optimize("O1")))
++#endif
++;
+ 
+ PFS_host *sanitize_host(PFS_host *unsafe);
+ void purge_all_host(void);
+--- a/storage/perfschema/pfs_user.h
++++ b/storage/perfschema/pfs_user.h
+@@ -93,7 +93,12 @@
+ 
+ PFS_user *
+ find_or_create_user(PFS_thread *thread,
+-                    const char *username, uint username_length);
++                    const char *username, uint username_length)
++#if defined(__aarch64__)
++  /* Workaround for https://launchpad.net/bugs/1353729 */
++  __attribute__((optimize("O1")))
++#endif
++;
+ 
+ PFS_user *sanitize_user(PFS_user *unsafe);
+ void purge_all_user(void);
