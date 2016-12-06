@@ -40,8 +40,6 @@ $app = new \Slim\App($container);
 
 $app->get('/comments', 'App\Controllers\Comments:index');
 
-$app->post('/comments', function (Request $request, Response $response) {
-    return $response;
-});
+$app->post('/comments', 'App\Controllers\Comments:save');
 
 $app->run();

@@ -9,4 +9,14 @@ class Product extends Model
     const UPDATED_AT = "update_date";
 
     protected $fillable = ['name', 'sku', 'description'];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'users_comments');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment', 'users_comments');
+    }
 }

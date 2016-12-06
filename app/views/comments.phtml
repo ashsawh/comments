@@ -4,12 +4,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <link href="comments.min.css" rel="stylesheet" type="text/css">
 
+<div id="userInfo" data-user-id="<?=$user->id ?>"></div>
 <div class="container">
     <div class="post-comments">
 
         <div id="flashMessage"></div>
 
-        <div id="product">Product
+        <div id="product" data-product-id="<?=$product->id ?>">Product
             <div class="productName detail">Name: <?=$product->name ?></div>
             <div class="productSKU detail">SKU: <?=$product->sku ?></div>
             <div class="productDesc detail">Description: </div>
@@ -32,7 +33,7 @@
                 <!-- first comment -->
 
                 <div class="media-heading">
-                    <button class="btn btn-default btn-xs" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseExample"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button> <span class="label label-info"><?=$comment->username ?></span>
+                    <button class="btn btn-default btn-xs" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseExample"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button> <span class="label label-info"><?=$comment->user->username ?></span>
                 </div>
 
 
